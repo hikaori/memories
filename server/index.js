@@ -4,7 +4,11 @@ import mongoose from 'mongoose';
 import nodemon from 'nodemon';
 import cors from 'cors';
 
+import postRouters from './routes/posts.js';
+
 const app = express();
+
+app.use('/posts', postRouters);
 
 app.use(bodyParser.json({ limit: '30mb', express: true }));
 app.use(bodyParser.urlencoded({ limit: '30mb', express: true }));
