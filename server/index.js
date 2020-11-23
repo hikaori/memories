@@ -1,22 +1,20 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-import nodemon from 'nodemon';
 import cors from 'cors';
 
-import postRouters from './routes/posts.js';
+import postRoutes from './routes/posts.js';
 
 const app = express();
 
-app.use('/posts', postRouters);
-
-app.use(bodyParser.json({ limit: '30mb', express: true }));
-app.use(bodyParser.urlencoded({ limit: '30mb', express: true }));
+app.use(bodyParser.json({ limit: '30mb', extended: true }));
+app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 app.use(cors());
+
+app.use('/posts', postRoutes);
 
 const CONNECTION_URL =
   'mongodb+srv://admin:admin1234@cluster0.rn2bt.mongodb.net/<dbname>?retryWrites=true&w=majority';
-
 const PORT = process.env.PORT || 5000;
 
 mongoose
